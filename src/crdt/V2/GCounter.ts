@@ -53,4 +53,8 @@ export class GCounter {
   split(): [GCounter, GCounter?] {
     return [GCounter.zero(), this.delta];
   }
+
+  copy(): GCounter {
+    return new GCounter(new Map(this.values), this.delta?.copy());
+  }
 }
