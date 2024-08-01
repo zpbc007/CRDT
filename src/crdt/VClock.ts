@@ -7,17 +7,17 @@ export enum Order {
   cc = 2,
 }
 
-export class VClock {
-  static zero(): VClock {
-    return new VClock();
+export class VTime {
+  static zero(): VTime {
+    return new VTime();
   }
 
-  static merge(a: VClock, b: VClock): VClock {
-    return new VClock(GCounter.merge(a.counter, b.counter));
+  static merge(a: VTime, b: VTime): VTime {
+    return new VTime(GCounter.merge(a.counter, b.counter));
   }
 
-  static compare(a: VClock, b: VClock): Order {
-    const valOrDefault = (k: ReplicaId, clock: VClock): bigint => {
+  static compare(a: VTime, b: VTime): Order {
+    const valOrDefault = (k: ReplicaId, clock: VTime): bigint => {
       return clock.counter._value.get(k) || 0n;
     };
 
