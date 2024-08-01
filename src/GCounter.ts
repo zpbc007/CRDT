@@ -1,40 +1,44 @@
 export type ReplicaId = string;
-export type GCounter = Map<ReplicaId, bigint>;
 
-function zero(): GCounter {
-  return new Map<ReplicaId, bigint>();
-}
+class GCounter {
+  _value: Map<ReplicaId, bigint>;
 
-function value(c: GCounter): bigint {
-  let acc: bigint = 0n;
-  c.forEach(v => {
-    acc += v;
-  });
+  constructor(copy?: GCounter) {
+    this._value = new Map(copy?._value);
+  }
 
-  return acc;
-}
+  static zero(): GCounter {
+    return new GCounter();
+  }
 
-function inc(id: ReplicaId, c: GCounter): GCounter {
-  const newCounter: GCounter = new Map(c);
-  const val = newCounter.get(id) || 0n;
-  newCounter.set(id, val);
+  static merge(a: GCounter, b: GCounter): GCounter {
+    const result: GCounter = new GCounter(a);
 
-  return newCounter;
-}
+    b._value.forEach((v, k) => {
+      const val = result._value.get(k) || 0n;
+      result._value.set(k, _maxBigInt(val, v));
+    });
 
-function merge(a: GCounter, b: GCounter): GCounter {
-  const result: GCounter = new Map(a);
+    return result;
+  }
 
-  b.forEach((v, k) => {
-    const val = result.get(k) || 0n;
-    result.set(k, _maxBigInt(val, v));
-  });
+  value(): bigint {
+    let acc: bigint = 0n;
+    this._value.forEach(v => {
+      acc += v;
+    });
 
-  return result;
+    return acc;
+  }
+
+  inc(id: ReplicaId) {
+    const val = this._value.get(id) || 0n;
+    this._value.set(id, val + 1n);
+  }
 }
 
 function _maxBigInt(a: bigint, b: bigint): bigint {
   return a >= b ? a : b;
 }
 
-export { zero, value, inc, merge };
+export { GCounter };
