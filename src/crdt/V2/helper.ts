@@ -14,12 +14,16 @@ export function upsert<K, V>(
 
 export function mergeOption<V>(
   merge: (a: V, b: V) => V,
-  a: V | null,
-  b: V | null
-): V | null {
-  if (a !== null && b !== null) {
+  a?: V,
+  b?: V
+): V | undefined {
+  if (a !== undefined && b !== undefined) {
     return merge(a, b);
   }
 
-  return a || b || null;
+  return a || b || undefined;
+}
+
+export function maxBigInt(a: bigint, b: bigint): bigint {
+  return a >= b ? a : b;
 }
