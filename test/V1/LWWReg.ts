@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { LWWReg } from "../src/crdt/LWWReg";
+import { LWWReg } from "../../src/crdt/V1/LWWReg";
 
 describe("LWWReg", () => {
   it("set first value should work", () => {

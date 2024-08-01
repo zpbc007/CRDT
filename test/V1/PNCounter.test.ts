@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { PNCounter } from "../src/crdt/PNCounter";
-import { ReplicaId } from "../src/crdt/GCounter";
+import { PNCounter } from "../../src/crdt/V1/PNCounter";
+import { ReplicaId } from "../../src/crdt/V1/GCounter";
 
 describe("PNCounter", () => {
   it("inc should add 1 every time", () => {

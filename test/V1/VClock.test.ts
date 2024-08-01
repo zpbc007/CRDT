@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { Order, VTime } from "../src/crdt/VClock";
-import { ReplicaId } from "../src/crdt/GCounter";
+import { Order, VTime } from "../../src/crdt/V1/VClock";
+import { ReplicaId } from "../../src/crdt/V1/GCounter";
 
 describe("VClock", () => {
   it("compare should be eq", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { PSet } from "../src/crdt/PSet";
+import { PSet } from "../../src/crdt/V1/PSet";
 
 describe("PSet", () => {
   it("add, remove should work", () => {

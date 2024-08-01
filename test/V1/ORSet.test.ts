@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { ORSet } from "../src/crdt/ORSet";
-import { ReplicaId } from "../src/crdt/GCounter";
+import { ORSet } from "../../src/crdt/V1/ORSet";
+import { ReplicaId } from "../../src/crdt/V1/GCounter";
 
 describe("ORSet", () => {
   const replicaId: ReplicaId = "zp-test";

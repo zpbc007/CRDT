@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { GCounter, ReplicaId } from "../src/crdt/GCounter";
+import { GCounter, ReplicaId } from "../../src/crdt/V1/GCounter";
 
 describe("GCounter", () => {
   it("zero should be empty", () => {
